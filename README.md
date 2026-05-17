@@ -4,7 +4,7 @@
 
 The project demonstrates how **IBM Bob**, **watsonx Orchestrate**, and the **GitHub API** can work together to accelerate workflows and help developers move from idea to implementation faster.
 
-Vercel deployment: https://spec-to-ship-pied.vercel.app/
+Public Vercel deployment: https://spec-to-ship-pied.vercel.app/
 
 ---
 
@@ -136,7 +136,7 @@ The live demo shows a real pull request generated from a user-entered feature sp
 Video Demo + voiceover explain: https://youtu.be/D9c0wnX1vw4?si=yMuJSlpD_OvPfN6F
 
 
-The project uses a React frontend where users submit software feature requests through a simple UI. The frontend sends requests to a Node.js/Express backend pipeline API that creates processing jobs and manages the engineering workflow. The frontend demo interacts directly with this backend workflow. When a user submits a feature request such as “Add JWT login authentication,” the backend generates a processing job and automatically creates a real GitHub pull request in the demo target repository. The live demo shows a complete end-to-end engineering workflow from plain-English specification to automated code contribution.
+The project uses a React frontend where users submit software feature requests through a simple UI. The frontend sends requests to a Node.js/Express backend pipeline API that creates processing jobs and manages the engineering workflow. The frontend demo interacts directly with this backend workflow. When a user submits a feature request such as “Add JWT login authentication,” the backend generates a processing job and automatically creates a real GitHub pull request in the demo target repository. The backend uses a GitHub Personal Access Token stored securely as a Render environment variable. This means public users can test the app through the Vercel UI, but generated pull requests are created only in the configured demo repository
 
 Custom watsonx Orchestrate agents define the AI planning layer. The Spec Parser Agent converts feature requests into structured JSON engineering tasks including implementation details, acceptance criteria, and affected files. The PR Description Agent generates professional GitHub pull request titles and summaries from generated task plans.
 
@@ -238,6 +238,24 @@ Frontend runs at:
 
     http://localhost:5173
 
+## Public Deployment
 
+### Frontend Deployment (Vercel)
+
+Public application:
+
+```text
+https://spec-to-ship-pied.vercel.app
+```
+
+### Backend API (Render)
+
+Backend API health endpoint:
+
+```text
+https://spec-to-ship.onrender.com/health
+```
+
+The backend service is designed as an API server and does not expose a frontend interface at the root route.
 
 
