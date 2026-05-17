@@ -42,18 +42,31 @@ Spec-to-Ship automates this workflow.
 
 ## Architecture
 
-```text
-React Frontend
+Frontend
+
+    User submits feature request
+    
       ↓
-Express Backend
+Backend
+      
+      Node.js/Express pipeline processes request
+      
       ↓
-Pipeline Job Store
+watsonx Orchestrate:
+
+     Spec Parser Agent: for task decomposition
+     PR Description Agent: for pull request generation
       ↓
-Task Generation Layer
+      
+GitHub Automation:
+
+    Create branch
+    Commit generated files
+    Open pull request
       ↓
-GitHub API
-      ↓
-Generated Pull Request
+      
+Demo repo `spec-to-ship-demo-target` Generated Pull Request
+
 ```
 
 ## IBM Bob IDE usage: 
