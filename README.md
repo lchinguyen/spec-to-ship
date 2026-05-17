@@ -2,7 +2,7 @@
 
 **Spec-to-Ship** is an AI-powered software engineering workflow built for the IBM Bob Hackathon. It converts plain-English feature requests into structured engineering tasks and automatically opens GitHub pull requests.
 
-The project demonstrates how **IBM Bob**, **watsonx Orchestrate**, and the **GitHub API** can work together to reduce repetitive engineering work and help developers move from idea to implementation faster.
+The project demonstrates how **IBM Bob**, **watsonx Orchestrate**, and the **GitHub API** can work together to accelerate workflows and help developers move from idea to implementation faster.
 
 ---
 
