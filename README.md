@@ -120,6 +120,7 @@ AI/Automation: IBM Bob IDE, IBM watsonx Orchestrate, GitHub REST API
 
 ## Project structure
 
+```text
 spec-to-ship/
 ├── backend/
 │   ├── src/
@@ -152,6 +153,7 @@ spec-to-ship/
 ├── docs/
 │   └── orchestrate-agents/
 └── README.md
+```
 
 ## Local setup
 
