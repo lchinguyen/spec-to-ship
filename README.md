@@ -127,7 +127,7 @@ PR Description Agent:
 The backend pipeline processes these tasks and uses GitHub API through Octokit to:
 - create a new branch,
 - commit generated files,
-- open a pull request in the live demo target repository: `spec-to-ship-demo-target`
+- open a pull request in the live demo target repository (view PR for testing): https://github.com/lchinguyen/spec-to-ship-demo-target/pulls
 
 The live demo shows a real pull request generated from a user-entered feature specification at the testing repo `spec-to-ship-demo-target`
 
