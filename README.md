@@ -184,6 +184,8 @@ spec-to-ship/
        npm install
        node src/server.js
 
+## Environment Confirgurtion (Github API + IBM Cloud API Key & watsonx Orchestrate Service Credentials)
+
 Update .env with your own credentials:
 
     PORT=8080
