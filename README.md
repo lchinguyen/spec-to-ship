@@ -44,14 +44,14 @@ Spec-to-Ship automates this workflow.
 
 ## Architecture
 
-Frontend
+Vercel Frontend
 ```text
     User submits feature request
 ```
 
    ↓
  
-Backend
+Render Backend
 ```text
       Node.js/Express pipeline processes request
 ```
