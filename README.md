@@ -1,143 +1,205 @@
-Spec-to-Ship
+# Spec-to-Ship
 
-Spec-to-Ship is an AI-powered software engineering workflow that converts plain-English feature requests into structured engineering tasks and automatically generates GitHub pull requests.
+**Spec-to-Ship** is an AI-powered software engineering workflow built for the IBM Bob Hackathon. It converts plain-English feature requests into structured engineering tasks and automatically opens GitHub pull requests.
 
-Built for the IBM Bob Hackathon, the project demonstrates how AI agents and repository-aware development tools can streamline the software delivery lifecycle — from product specification to implementation planning and automated code contribution workflows.
+The project demonstrates how **IBM Bob**, **watsonx Orchestrate**, and the **GitHub API** can work together to reduce repetitive engineering work and help developers move from idea to implementation faster.
 
-Problem:
-Modern software teams spend significant time translating high-level product ideas into engineering tasks, coordinating implementation details, writing pull request summaries, and managing repetitive development workflows.
+---
 
-Spec-to-Ship reduces this friction by introducing an AI-native engineering pipeline that:
+## Core Features
 
-interprets feature specifications,
-structures implementation plans,
-generates development artifacts,
-and automates GitHub pull request creation.
+Plain-English Feature Intake: 
 
-Architecture:
-Frontend UI
-    ↓
-Backend Pipeline API
-    ↓
-watsonx Orchestrate Agents
-    ↓
-Task Decomposition + PR Generation
-    ↓
-GitHub API Automation
-    ↓
-Automated Pull Request Creation
-
-
-Core Features
-Plain-English Feature Intake
-
-Users submit natural-language software requirements through a React frontend interface.
+Users submit natural-language software requirements through a React frontend interface
 
 Example:
 
-Add JWT login authentication with protected routes and session validation.
+    > Add JWT login authentication with protected routes.
 
-AI Task Decomposition
+An engineer then has to manually convert that idea into:
+- implementation tasks,
+- affected files,
+- acceptance criteria,
+- code changes,
+- documentation,
+- and a pull request.
 
-watsonx Orchestrate custom agents transform feature requests into structured engineering tasks, including:
+Spec-to-Ship automates this workflow.
 
-implementation tasks,
-affected files,
-acceptance criteria,
-and development context.
-GitHub Pull Request Automation
+---
 
-The backend pipeline automatically:
+## Demo Workflow
 
-creates branches,
-commits generated implementation artifacts,
-and opens GitHub pull requests.
-Repository-Aware Development with IBM Bob
+1. User enters a plain-English feature request in the frontend.
+2. Backend creates a pipeline job.
+3. watsonx Orchestrate agents define the task-decomposition workflow.
+4. IBM Bob IDE is used as the repository-aware development partner to analyze, improve, and document the implementation.
+5. Backend generates implementation artifacts.
+6. GitHub API creates a branch, commits generated files, and opens a pull request.
+7. Developer reviews the generated PR instead of starting from scratch.
 
-IBM Bob IDE was used as the repository-aware AI engineering assistant throughout development to:
+---
 
-analyze backend architecture,
-review production readiness,
-improve engineering workflows,
-and generate technical documentation.
-IBM watsonx Orchestrate Agents
-Spec Parser Agent
+## Architecture
 
-Converts feature specifications into structured JSON engineering task plans.
+```text
+React Frontend
+      ↓
+Express Backend
+      ↓
+Pipeline Job Store
+      ↓
+Task Generation Layer
+      ↓
+GitHub API
+      ↓
+Generated Pull Request
+```
 
-PR Description Agent
+## IBM Bob IDE usage: 
 
-Generates professional GitHub pull request titles and summaries from engineering task lists.
+Bob was used as the repository-aware development partner for this project.
 
-Agent evidence and screenshots are included in:
-
-docs/orchestrate-agents/
-IBM Bob IDE Usage
-
-IBM Bob was used as the primary AI-assisted development environment for:
-
-backend architecture analysis,
-repository understanding,
-engineering review,
-developer workflow improvement,
-and documentation generation.
+- analyze the backend pipeline,
+- explain how the system converts specs into pull requests,
+- review the repository for production-readiness improvements,
+- improve developer experience and demo clarity,
+   generate README/documentation content.
 
 Bob task session reports are included in:
 
-docs/bob-session-reports/
-Tech Stack
-Frontend
-React
-Vite
-Backend
-Node.js
-Express
-AI & Automation
-IBM Bob IDE
-IBM watsonx Orchestrate
-Integrations
-GitHub REST API
-Octokit
-Example Workflow
-User enters a feature request in the frontend UI.
-Backend creates a processing job.
-watsonx Orchestrate agents structure implementation tasks.
-Backend generates implementation artifacts.
-GitHub API creates a branch and commits generated files.
-A pull request is automatically opened in GitHub.
-Local Development
-Backend
-cd backend
-npm install
-node src/server.js
+```text
+bob_sessions/
+```
 
-Backend runs on:
+Included Bob session artifacts:
 
-http://localhost:8080
-Frontend
-cd frontend
-npm install
-npm run dev
+```text
+bob_sessions/
+├── bob-task-1-backend-pipeline-analysis.md
+├── bob-task-2-production-readiness-improvements.md
+└── bob-task-3-readme-generation.md
+```
 
-Frontend runs on:
+## IBM watsonx Orchestrate Agents
 
-http://localhost:5173
-Demo Assets
-Orchestrate Agents
-docs/orchestrate-agents/
-IBM Bob Session Reports
-docs/bob-session-reports/
-Future Improvements
-Direct watsonx Orchestrate API integration
-Multi-agent engineering workflows
-CI/CD integration
-Automatic code validation/testing
-Real-time pipeline orchestration dashboard
-Deployment automation with IBM Cloud Code Engine
-Hackathon Notes
+More details are store in docs/orchestrate-agents/
 
-IBM Cloud provisioning permissions for additional watsonx project resources and Code Engine deployments were unavailable in this hackathon environment. The project is demonstrated locally while still integrating:
+Spec Parser Agent:
 
-IBM Bob IDE,
-watsonx Orchestrate agents,
-and live GitHub pull request automation.
+     Converts feature specifications into structured JSON engineering task plans.
+     
+Example output includes:
+
+- feature name
+- summary
+- implementation tasks
+- acceptance criteria
+- affected files
+
+PR Description Agent:
+ 
+      Generates professional GitHub pull request titles and summaries from engineering task lists.
+
+## GitHub Automation
+
+Spec-to-Ship uses the GitHub API through Octokit to:
+- create a new branch,
+- commit generated files,
+- open a pull request in the demo target repository
+
+The live demo shows a real pull request generated from a user-entered feature specification: 
+
+## Tech Stack
+
+Frontend: React, Vite, Axios
+
+Backend: Node.js,Express, Octokit, UUID, dotenv, CORS
+
+AI/Automation: IBM Bob IDE, IBM watsonx Orchestrate, GitHub REST API
+
+## Project structure
+
+spec-to-ship/
+├── backend/
+│   ├── src/
+│   │   ├── agents/
+│   │   │   └── orchestrate.js
+│   │   ├── routes/
+│   │   │   ├── jobs.js
+│   │   │   └── spec.js
+│   │   ├── services/
+│   │   │   ├── bob.js
+│   │   │   ├── github.js
+│   │   │   ├── jobStore.js
+│   │   │   └── pipeline.js
+│   │   └── server.js
+│   ├── .env.example
+│   └── package.json
+│
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── PipelineStatus.jsx
+│   │   │   ├── PRResult.jsx
+│   │   │   └── SpecForm.jsx
+│   │   ├── App.jsx
+│   │   ├── App.css
+│   │   └── main.jsx
+│   └── package.json
+│
+├── bob_sessions/
+├── docs/
+│   └── orchestrate-agents/
+└── README.md
+
+## Local setup
+
+1. Clone the repository
+   
+       git clone https://github.com/lchinguyen/spec-to-ship.git
+       cd spec-to-ship
+2. Backend setup:
+
+        cd backend
+       npm install
+       node src/server.js
+
+Update .env with your own credentials:
+
+    PORT=8080
+    FRONTEND_URL=http://localhost:5173
+
+     GITHUB_TOKEN=your_github_token
+     GITHUB_OWNER=your_github_username
+     GITHUB_REPO=spec-to-ship-demo-target
+     GITHUB_BASE_BRANCH=main
+
+     ORCHESTRATE_URL=your_orchestrate_url
+     ORCHESTRATE_INSTANCE_ID=your_orchestrate_instance_id
+     ORCHESTRATE_AGENT_ID=your_spec_parser_agent_id
+     ORCHESTRATE_PR_AGENT_ID=your_pr_description_agent_id
+
+Start backend:
+
+    npm start
+
+Backend runs at:
+
+    http://localhost:8080
+    
+3. Frontend setup
+
+In a second terminal:
+
+     cd frontend
+     npm install
+     npm run dev
+
+Frontend runs at:
+
+    http://localhost:5173
+
+
+
+
