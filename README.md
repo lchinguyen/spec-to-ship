@@ -2,6 +2,8 @@
 
 **Spec-to-Ship** is an AI-powered software engineering workflow built for the IBM Bob Hackathon. It converts plain-English feature requests into structured engineering tasks and automatically opens GitHub pull requests.
 
+https://lablab.ai/ai-hackathons/ibm-bob-hackathon/spec-to-ship/spec-to-ship
+
 The project demonstrates how **IBM Bob**, **watsonx Orchestrate**, and the **GitHub API** can work together to accelerate workflows and help developers move from idea to implementation faster.
 
 Public Vercel deployment: https://spec-to-ship-pied.vercel.app/
