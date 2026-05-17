@@ -4,6 +4,8 @@
 
 The project demonstrates how **IBM Bob**, **watsonx Orchestrate**, and the **GitHub API** can work together to accelerate workflows and help developers move from idea to implementation faster.
 
+Vercel deployment: https://spec-to-ship-demo-target.vercel.app/
+
 ---
 
 ## Core Features
