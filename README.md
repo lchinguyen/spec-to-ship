@@ -46,20 +46,20 @@ Frontend
 ```text
     User submits feature request
 ```
-     ↓
+   ↓
  
 Backend
 ```text
       Node.js/Express pipeline processes request
 ```  
-    ↓
+   ↓
 
 watsonx Orchestrate:
 ```text
      Spec Parser Agent: for task decomposition
      PR Description Agent: for pull request generation
 ``` 
-    ↓
+   ↓
       
 GitHub Automation:
 ```text
@@ -67,7 +67,7 @@ GitHub Automation:
     Commit generated files
     Open pull request
 ``` 
-↓
+   ↓
       
 Demo repo `spec-to-ship-demo-target` Generated Pull Request
 
