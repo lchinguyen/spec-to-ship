@@ -123,7 +123,7 @@ Spec-to-Ship uses the GitHub API through Octokit to:
 - commit generated files,
 - open a pull request in the demo target repository
 
-The live demo shows a real pull request generated from a user-entered feature specification at the testing repo `spec-to-ship-demo-target`.: 
+The live demo shows a real pull request generated from a user-entered feature specification at the testing repo `spec-to-ship-demo-target`:
 
 ## Tech Stack
 
@@ -178,7 +178,7 @@ spec-to-ship/
        cd spec-to-ship
 2. Backend setup:
 
-        cd backend
+       cd backend
        npm install
        node src/server.js
 
