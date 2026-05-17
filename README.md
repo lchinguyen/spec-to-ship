@@ -38,21 +38,6 @@ Spec-to-Ship automates this workflow.
 6. GitHub API creates a branch, commits generated files, and opens a pull request.
 7. Developer reviews the generated PR instead of starting from scratch.
 
-The project uses a React frontend where users submit software feature requests through a simple UI. The frontend sends requests to a Node.js/Express backend pipeline API that creates processing jobs and manages the engineering workflow.
-
-Custom watsonx Orchestrate agents define the AI planning layer. The Spec Parser Agent converts feature requests into structured JSON engineering tasks including implementation details, acceptance criteria, and affected files. The PR Description Agent generates professional GitHub pull request titles and summaries from generated task plans.
-
-The backend pipeline processes these tasks and uses the GitHub API through Octokit to automatically:
-- create a new branch,
-- commit generated implementation artifacts,
-- and open a pull request in the live demo target repository: `spec-to-ship-demo-target`.
-
-The frontend demo interacts directly with this backend workflow. When a user submits a feature request such as “Add JWT login authentication,” the backend generates a processing job and automatically creates a real GitHub pull request in the demo target repository. The live demo shows a complete end-to-end engineering workflow from plain-English specification to automated code contribution.
-
-IBM Bob IDE was used throughout development as the repository-aware engineering assistant. Bob analyzed the backend architecture, reviewed production readiness, improved developer workflows, and generated technical documentation using full repository context. Exported Bob task session reports are included in the final repository as required by the hackathon guidelines.
-
-The project demonstrates how IBM Bob IDE and watsonx Orchestrate can work together to reduce repetitive software engineering work and accelerate development workflows using AI-native tooling.
-
 ---
 
 ## Architecture
