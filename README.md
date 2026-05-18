@@ -140,9 +140,9 @@ Video Demo + voiceover explain: https://youtu.be/D9c0wnX1vw4?si=yMuJSlpD_OvPfN6F
 
 The project uses a React frontend where users submit software feature requests through a simple UI. The frontend sends requests to a Node.js/Express backend pipeline API that creates processing jobs and manages the engineering workflow. The frontend demo interacts directly with this backend workflow. When a user submits a feature request such as “Add JWT login authentication,” the backend generates a processing job and automatically creates a real GitHub pull request in the demo target repository. 
 
-Custom watsonx Orchestrate agents define the AI planning layer. The Spec Parser Agent converts feature requests into structured JSON engineering tasks including implementation details, acceptance criteria, and affected files. The PR Description Agent generates professional GitHub pull request titles and summaries from generated task plans.
+Custom watsonx Orchestrate help create agents. The Spec Parser Agent converts feature requests into structured JSON engineering tasks including implementation details, acceptance criteria, and affected files. The PR Description Agent generates professional GitHub pull request titles and summaries from generated task plans.
 
-IBM Bob IDE was used to analyze the backend architecture, reviewed production readiness, suggest improvements, generate technical documentation using full repository context. Exported Bob task session reports are included in the final repository as required by the hackathon guidelines.
+IBM Bob IDE used to analyze backend architecture, reviewed production readiness, suggest improvements, generate technical documentation using full repository context. Exported Bob task session reports are included in the final repository as required by the hackathon guidelines.
 
 ## Skills I developed:
 
