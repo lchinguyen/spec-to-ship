@@ -364,27 +364,3 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on:
 
 ---
 
-## 📄 License
-
-MIT License - See LICENSE file for details
-
----
-
-## 🙏 Acknowledgments
-
-- IBM Bob and watsonx Orchestrate teams
-- IBM Bob Hackathon organizers
-- Open source community
-
----
-
-## 📞 Support
-
-- **Issues**: [GitHub Issues](https://github.com/lchinguyen/spec-to-ship/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/lchinguyen/spec-to-ship/discussions)
-
----
-
-**Note**: This is the production-hardening branch with post-hackathon improvements. The original hackathon submission is preserved in the main branch.
-
-Made with ❤️ using IBM Bob IDE and watsonx Orchestrate
