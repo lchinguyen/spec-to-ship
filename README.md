@@ -77,21 +77,15 @@ GitHub Automation:
 
    ↓
       
-Demo repo `spec-to-ship-demo-target` Generated Pull Request
+Demo repo `spec-to-ship-demo-target` generated PR
 
 ```
-
+```
 ## IBM Bob IDE usage: 
 
-Bob was used as the repository-aware development partner for this project.
+IBM Bob IDE used to analyze backend architecture, reviewed production readiness, suggest improvements, generate technical documentation using full repository context. Exported Bob task session reports are included in `bob_sessions/` folder.
 
-- analyze the backend pipeline,
-- explain how the system converts specs into pull requests,
-- review the repository for production-readiness improvements,
-- improve developer experience and demo clarity,
-   generate README/documentation content.
-
-Bob task session reports are included in:
+Bob task session reports included in:
 
 ```text
 bob_sessions/
@@ -108,7 +102,9 @@ bob_sessions/
 
 ## IBM watsonx Orchestrate Agents
 
-More details are store in docs/orchestrate-agents/
+Custom watsonx Orchestrate help create agents. The Spec Parser Agent converts feature requests into structured JSON engineering tasks including implementation details, acceptance criteria, and affected files. The PR Description Agent generates professional GitHub pull request titles and summaries from generated task plans.
+
+More details are store in `docs/orchestrate-agents/`
 
 Spec Parser Agent:
 
@@ -140,9 +136,6 @@ Video Demo + voiceover explain: https://youtu.be/D9c0wnX1vw4?si=yMuJSlpD_OvPfN6F
 
 The project uses a React frontend where users submit software feature requests and sends requests to a Node.js/Express backend pipeline API that creates processing jobs and manages the engineering workflow. The frontend demo interacts directly with this backend workflow. When a user submits a feature request such as “Add JWT login authentication,” the backend generates a processing job and automatically creates a real GitHub pull request in the demo target repository. 
 
-Custom watsonx Orchestrate help create agents. The Spec Parser Agent converts feature requests into structured JSON engineering tasks including implementation details, acceptance criteria, and affected files. The PR Description Agent generates professional GitHub pull request titles and summaries from generated task plans.
-
-IBM Bob IDE used to analyze backend architecture, reviewed production readiness, suggest improvements, generate technical documentation using full repository context. Exported Bob task session reports are included in the final repository as required by the hackathon guidelines.
 
 ## Skills I developed:
 
