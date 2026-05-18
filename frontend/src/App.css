@@ -29,6 +29,86 @@ h1 {
   margin-bottom: 24px;
 }
 
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.card-header h2 {
+  margin: 0;
+}
+
+.examples-toggle {
+  background: #334155;
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
+.examples-panel {
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.examples-panel h3 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  color: #94a3b8;
+}
+
+.examples-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+}
+
+.example-card {
+  background: #121a2b;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 16px;
+  transition: border-color 0.2s;
+}
+
+.example-card:hover {
+  border-color: #2563eb;
+}
+
+.example-card h4 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  color: #60a5fa;
+  font-size: 16px;
+}
+
+.example-preview {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 12px;
+  font-size: 12px;
+  color: #94a3b8;
+  overflow: hidden;
+  white-space: pre-wrap;
+  line-height: 1.4;
+}
+
+.load-example-btn {
+  width: 100%;
+  background: #334155;
+  padding: 8px 12px;
+  font-size: 13px;
+}
+
+.load-example-btn:hover {
+  background: #475569;
+}
+
 textarea {
   width: 100%;
   background: #0f172a;
@@ -49,10 +129,17 @@ button {
   border-radius: 12px;
   cursor: pointer;
   font-weight: 600;
+  transition: all 0.2s;
 }
 
-button:hover {
+button:hover:not(:disabled) {
   opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 a {

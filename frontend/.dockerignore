@@ -1,0 +1,13 @@
+node_modules
+npm-debug.log
+.env.development
+.env.local
+dist
+coverage
+.git
+.gitignore
+README.md
+.eslintrc.json
+.prettierrc
+
+# Made with Bob

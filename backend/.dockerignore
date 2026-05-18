@@ -1,0 +1,17 @@
+node_modules
+npm-debug.log
+.env
+.env.*
+!.env.example
+logs
+*.log
+coverage
+.git
+.gitignore
+README.md
+tests
+.eslintrc.json
+.prettierrc
+jest.config.js
+
+# Made with Bob
