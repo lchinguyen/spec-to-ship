@@ -144,7 +144,19 @@ Custom watsonx Orchestrate agents define the AI planning layer. The Spec Parser 
 
 IBM Bob IDE was used throughout development as the repository-aware engineering assistant. Bob analyzed the backend architecture, reviewed production readiness, improved developer workflows, and generated technical documentation using full repository context. Exported Bob task session reports are included in the final repository as required by the hackathon guidelines.
 
-The project demonstrates how IBM Bob IDE and watsonx Orchestrate can work together to reduce repetitive software engineering work and accelerate development workflows using AI-native tooling.
+##Skills developed:
+- Built production-oriented full-stack AI systems using React, Node.js, Express, Vercel, and Render deployment workflows.
+
+- Integrated IBM watsonx Orchestrate agents, IBM Bob IDE, and GitHub API automation to transform natural-language software requirements into automated engineering workflows and pull request generation.
+  
+- Implemented backend production-readiness features including structured logging, centralized error handling, input validation, rate limiting, retry logic, timeout protection, and health monitoring.
+
+- Designed persistent and fault-tolerant backend workflows using Redis-backed job storage with in-memory fallback mechanisms.
+- Applied API security and reliability techniques including CORS configuration, rate limiting, Joi-based input validation, and health monitoring endpoints.
+
+- Built developer-focused infrastructure including Swagger/OpenAPI documentation, Jest testing infrastructure, Docker containerization, ESLint/Prettier integration, and Prometheus observability metrics.
+  
+- Implemented real-time pipeline status tracking and frontend UX improvements including animated progress states, error boundaries, job history persistence, and specification templates.
 
 ## Tech Stack
 
