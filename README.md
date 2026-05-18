@@ -268,6 +268,5 @@ Backend API health endpoint:
 https://spec-to-ship.onrender.com/health
 ```
 
-The backend service is designed as an API server and does not expose a frontend interface at the root route.
-
+The backend uses a GitHub Personal Access Token stored securely as a Render environment variable. This means public users can test the app through the Vercel UI, but generated pull requests are created only in the configured demo repository
 
