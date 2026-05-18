@@ -146,17 +146,15 @@ IBM Bob IDE used to analyze backend architecture, reviewed production readiness,
 
 ## Skills I developed:
 
+- Deployed a production-oriented full-stack AI engineering workflow using React, Node.js, Express, Vercel, and Render.
+
 - Integrated IBM watsonx Orchestrate agents, IBM Bob IDE, and GitHub API automation to transform natural-language software requirements into automated engineering workflows and pull request generation.
   
 - Implemented backend production-readiness features including structured logging, centralized error handling, input validation, rate limiting, retry logic, timeout protection, and health monitoring.
 
-- Designed persistent and fault-tolerant backend workflows using Redis-backed job storage with in-memory fallback mechanisms.
-  
-- Applied API security and reliability techniques including CORS configuration, rate limiting, Joi-based input validation, and health monitoring endpoints.
+- Build developer infrastructure with Swagger/OpenAPI documentation, Jest testing, Docker containerization, Prometheus metrics, and CI-ready workflows.
 
-- Built developer-focused infrastructure including Swagger/OpenAPI documentation, Jest testing infrastructure, Docker containerization, ESLint/Prettier integration, and Prometheus observability metrics.
-  
-- Implemented real-time pipeline status tracking and frontend UX improvements including animated progress states, error boundaries, job history persistence, and specification templates.
+- Designed reliable backend architecture using Redis-backed job storage, request tracking, graceful shutdown handling, and real-time pipeline status updates.
 
 ## Tech Stack
 
