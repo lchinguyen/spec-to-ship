@@ -1,243 +1,390 @@
-# Spec-to-Ship
+# Spec-to-Ship 🚀
+
+> **Production-Hardening Branch** - Enterprise-ready version with comprehensive production improvements
 
 **Spec-to-Ship** is an AI-powered software engineering workflow built for the IBM Bob Hackathon. It converts plain-English feature requests into structured engineering tasks and automatically opens GitHub pull requests.
 
-The project demonstrates how **IBM Bob**, **watsonx Orchestrate**, and the **GitHub API** can work together to accelerate workflows and help developers move from idea to implementation faster.
-
-Vercel deployment: https://spec-to-ship-pied.vercel.app/
+This branch contains **post-hackathon production hardening improvements** that transform the prototype into an enterprise-ready application with comprehensive error handling, monitoring, testing, and deployment infrastructure.
 
 ---
 
-## Core Features
+## 🌟 What's New in Production-Hardening Branch
 
-Plain-English Feature Intake: 
+This branch adds **40+ production-ready features** across 4 phases:
 
-Users submit natural-language software requirements through a React frontend interface
+### ✅ Phase 1: Critical Production Readiness
+- **Environment Validation** - Startup checks for required configuration
+- **Structured Logging** - Winston with JSON format, file/console transports, sensitive data sanitization
+- **Error Handling** - Custom error classes, centralized middleware, consistent responses
+- **Input Validation** - Joi schemas for all API inputs
+- **Security** - CORS whitelist, rate limiting (10-20 req/15min)
+- **Request Tracking** - UUID-based request IDs throughout lifecycle
 
-Example:
+### ✅ Phase 2: Reliability & Storage
+- **Redis Storage** - Persistent job storage with automatic in-memory fallback
+- **Retry Logic** - Exponential backoff for transient failures
+- **Timeout Protection** - Configurable timeouts per operation type
+- **Health Monitoring** - Dependency verification endpoints
+- **Graceful Shutdown** - SIGTERM/SIGINT handling
+- **Visual Progress** - Animated pipeline stages with real-time updates
 
-    > Add JWT login authentication with protected routes.
+### ✅ Phase 3: Developer Experience
+- **Testing** - Jest infrastructure with 70% coverage threshold
+- **Code Quality** - ESLint and Prettier for backend and frontend
+- **Docker** - Complete containerization with docker-compose
+- **Metrics** - Prometheus endpoint with comprehensive observability
+- **Job History** - LocalStorage-based recent jobs (last 10)
+- **Examples** - Pre-built specification templates
 
-An engineer then has to manually convert that idea into:
-- implementation tasks,
-- affected files,
-- acceptance criteria,
-- code changes,
-- documentation,
-- and a pull request.
-
-Spec-to-Ship automates this workflow.
+### ✅ Phase 4: Documentation & Polish
+- **Production Docs** - Complete implementation documentation
+- **Contributing Guide** - Comprehensive contribution guidelines
+- **Demo Setup** - Step-by-step demo scenarios
+- **Error Boundary** - React error boundary with dev/prod modes
 
 ---
 
-## Demo Workflow
+## 🏗️ Architecture
 
-1. User enters a plain-English feature request in the frontend.
-2. Backend creates a pipeline job.
-3. watsonx Orchestrate agents define the task-decomposition workflow.
-4. IBM Bob IDE is used as the repository-aware development partner to analyze, improve, and document the implementation.
-5. Backend generates implementation artifacts.
-6. GitHub API creates a branch, commits generated files, and opens a pull request.
-7. Developer reviews the generated PR instead of starting from scratch.
+```
+┌─────────────┐      ┌──────────────┐      ┌─────────────┐
+│   Frontend  │─────▶│   Backend    │─────▶│  IBM Bob    │
+│   (React)   │      │  (Express)   │      │   Agent     │
+└─────────────┘      └──────────────┘      └─────────────┘
+                            │
+                            ├─────▶ Redis (Job Storage)
+                            │
+                            ├─────▶ GitHub API
+                            │
+                            └─────▶ Prometheus Metrics
+```
+
+### Core Workflow
+
+1. **User Input** - Submit feature request via React frontend
+2. **Pipeline Creation** - Backend creates tracked job with request ID
+3. **AI Processing** - watsonx Orchestrate agents parse and structure tasks
+4. **Code Generation** - IBM Bob generates implementation
+5. **PR Creation** - GitHub API creates branch, commits, opens PR
+6. **Monitoring** - Real-time progress, metrics, and health checks
 
 ---
 
-## Architecture
+## 🚀 Quick Start
 
-Frontend
-```text
-    User submits feature request
+### Prerequisites
+
+- Node.js 20+
+- Redis (optional, falls back to in-memory)
+- Docker & Docker Compose (for containerized deployment)
+- GitHub Personal Access Token
+- IBM Bob API credentials
+- watsonx Orchestrate credentials
+
+### Option 1: Docker Deployment (Recommended)
+
+```bash
+# Clone and navigate
+git clone https://github.com/lchinguyen/spec-to-ship.git
+cd spec-to-ship
+git checkout production-hardening
+
+# Create .env file
+cat > .env << EOF
+GITHUB_TOKEN=your_github_token
+BOB_API_KEY=your_bob_api_key
+BOB_API_URL=https://your-bob-api-url
+ORCHESTRATE_URL=your_orchestrate_url
+ORCHESTRATE_INSTANCE_ID=your_instance_id
+ORCHESTRATE_AGENT_ID=your_agent_id
+ORCHESTRATE_PR_AGENT_ID=your_pr_agent_id
+NODE_ENV=production
+PORT=3000
+REDIS_URL=redis://redis:6379
+EOF
+
+# Start all services
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+
+# Access application
+open http://localhost:4173
 ```
 
-   ↓
- 
-Backend
-```text
-      Node.js/Express pipeline processes request
-```
- 
-   ↓
+### Option 2: Local Development
 
-watsonx Orchestrate:
-```text
-     Spec Parser Agent: for task decomposition
-     PR Description Agent: for pull request generation
-```
+```bash
+# Backend
+cd backend
+npm install
+cp .env.example .env
+# Edit .env with your credentials
+npm start
 
-   ↓
-      
-GitHub Automation:
-```text
-    Create branch
-    Commit generated files
-    Open pull request
+# Frontend (new terminal)
+cd frontend
+npm install
+npm run dev
+
+# Access application
+open http://localhost:5173
 ```
 
-   ↓
-      
-Demo repo `spec-to-ship-demo-target` Generated Pull Request
+---
 
+## 📊 Monitoring & Observability
+
+### Health Check
+```bash
+curl http://localhost:3000/health | jq
 ```
 
-## IBM Bob IDE usage: 
-
-Bob was used as the repository-aware development partner for this project.
-
-- analyze the backend pipeline,
-- explain how the system converts specs into pull requests,
-- review the repository for production-readiness improvements,
-- improve developer experience and demo clarity,
-   generate README/documentation content.
-
-Bob task session reports are included in:
-
-```text
-bob_sessions/
+Returns service status and dependency health:
+```json
+{
+  "status": "ok",
+  "service": "spec-to-ship-backend",
+  "version": "1.0.0",
+  "uptime": 3600,
+  "dependencies": {
+    "github": "healthy",
+    "storage": {
+      "type": "redis",
+      "status": "healthy"
+    }
+  }
+}
 ```
 
-Included Bob session artifacts:
-
-```text
-bob_sessions/
-├── bob-task-1-backend-pipeline-analysis.md
-├── bob-task-2-production-readiness-improvements.md
-└── bob-task-3-readme-generation.md
+### Prometheus Metrics
+```bash
+curl http://localhost:3000/metrics
 ```
 
-## IBM watsonx Orchestrate Agents
+Available metrics:
+- `http_request_duration_seconds` - Request latency
+- `http_requests_total` - Total requests
+- `jobs_total` - Job creation by status
+- `job_duration_seconds` - Job processing time
+- `pipeline_stage_total` - Pipeline stage execution
+- `active_jobs` - Current active jobs
+- `redis_connection_status` - Redis health
+- `github_api_calls_total` - GitHub API usage
 
-More details are store in docs/orchestrate-agents/
-
-Spec Parser Agent:
-
-     Converts feature specifications into structured JSON engineering task plans.
-     
-Example output includes:
-
-- feature name
-- summary
-- implementation tasks
-- acceptance criteria
-- affected files
-
-PR Description Agent:
- 
-      Generates professional GitHub pull request titles and summaries from engineering task lists.
-
-## GitHub Automation
-
-The backend pipeline processes these tasks and uses GitHub API through Octokit to:
-- create a new branch,
-- commit generated files,
-- open a pull request in the live demo target repository (view PR for testing): https://github.com/lchinguyen/spec-to-ship-demo-target/pulls
-
-The live demo shows a real pull request generated from a user-entered feature specification at the testing repo `spec-to-ship-demo-target`
-
-Video Demo + voiceover explain: https://youtu.be/D9c0wnX1vw4?si=yMuJSlpD_OvPfN6F
-
-
-The project uses a React frontend where users submit software feature requests through a simple UI. The frontend sends requests to a Node.js/Express backend pipeline API that creates processing jobs and manages the engineering workflow. The frontend demo interacts directly with this backend workflow. When a user submits a feature request such as “Add JWT login authentication,” the backend generates a processing job and automatically creates a real GitHub pull request in the demo target repository. The live demo shows a complete end-to-end engineering workflow from plain-English specification to automated code contribution.
-
-Custom watsonx Orchestrate agents define the AI planning layer. The Spec Parser Agent converts feature requests into structured JSON engineering tasks including implementation details, acceptance criteria, and affected files. The PR Description Agent generates professional GitHub pull request titles and summaries from generated task plans.
-
-IBM Bob IDE was used throughout development as the repository-aware engineering assistant. Bob analyzed the backend architecture, reviewed production readiness, improved developer workflows, and generated technical documentation using full repository context. Exported Bob task session reports are included in the final repository as required by the hackathon guidelines.
-
-The project demonstrates how IBM Bob IDE and watsonx Orchestrate can work together to reduce repetitive software engineering work and accelerate development workflows using AI-native tooling.
-
-## Tech Stack
-
-Frontend: React, Vite, Axios
-
-Backend: Node.js,Express, Octokit, UUID, dotenv, CORS
-
-AI/Automation: IBM Bob IDE, IBM watsonx Orchestrate, GitHub REST API
-
-## Project structure
-
-```text
-spec-to-ship/
-├── backend/
-│   ├── src/
-│   │   ├── agents/
-│   │   │   └── orchestrate.js
-│   │   ├── routes/
-│   │   │   ├── jobs.js
-│   │   │   └── spec.js
-│   │   ├── services/
-│   │   │   ├── bob.js
-│   │   │   ├── github.js
-│   │   │   ├── jobStore.js
-│   │   │   └── pipeline.js
-│   │   └── server.js
-│   ├── .env.example
-│   └── package.json
-│
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── PipelineStatus.jsx
-│   │   │   ├── PRResult.jsx
-│   │   │   └── SpecForm.jsx
-│   │   ├── App.jsx
-│   │   ├── App.css
-│   │   └── main.jsx
-│   └── package.json
-│
-├── bob_sessions/
-├── docs/
-│   └── orchestrate-agents/
-└── README.md
+### API Documentation
+```bash
+open http://localhost:3000/api-docs
 ```
 
-## Local setup
+Interactive Swagger UI with all API endpoints.
 
-1. Clone the repository
-   
-       git clone https://github.com/lchinguyen/spec-to-ship.git
-       cd spec-to-ship
-2. Backend setup:
+### Logs
 
-       cd backend
-       npm install
-       node src/server.js
+Structured JSON logs with:
+- Timestamps
+- Request IDs
+- Sanitized data (no credentials)
+- Error stack traces (dev only)
 
-## Environment Confirgurtion (Github API + IBM Cloud API Key & watsonx Orchestrate Service Credentials)
+```bash
+# View logs
+docker-compose logs -f backend
 
-Update .env with your own credentials:
+# Or locally
+tail -f backend/logs/combined.log
+```
 
-    PORT=8080
-    FRONTEND_URL=http://localhost:5173
+---
 
-     GITHUB_TOKEN=your_github_token
-     GITHUB_OWNER=your_github_username
-     GITHUB_REPO=spec-to-ship-demo-target
-     GITHUB_BASE_BRANCH=main
+## 🧪 Testing
 
-     ORCHESTRATE_URL=your_orchestrate_url
-     ORCHESTRATE_INSTANCE_ID=your_orchestrate_instance_id
-     ORCHESTRATE_AGENT_ID=your_spec_parser_agent_id
-     ORCHESTRATE_PR_AGENT_ID=your_pr_description_agent_id
+```bash
+cd backend
 
-Start backend:
+# Run all tests
+npm test
 
-    npm start
+# Run with coverage
+npm test -- --coverage
 
-Backend runs at:
+# Run specific test
+npm test -- jobStore.test.js
 
-    http://localhost:8080
-    
-3. Frontend setup
+# Watch mode
+npm test -- --watch
+```
 
-In a second terminal:
+### Test Coverage
+- Target: 70% coverage (branches, functions, lines, statements)
+- Tests: jobStore, retry logic, sanitization
+- Framework: Jest with supertest
 
-     cd frontend
-     npm install
-     npm run dev
+---
 
-Frontend runs at:
+## 🎨 Code Quality
 
-    http://localhost:5173
+```bash
+# Backend
+cd backend
+npm run lint          # Check for issues
+npm run lint:fix      # Auto-fix issues
+npm run format        # Format code
+npm run format:check  # Check formatting
 
+# Frontend
+cd frontend
+npm run lint
+npm run lint:fix
+npm run format
+npm run format:check
+```
 
+---
 
+## 🐳 Docker Services
 
+### Services
+- **backend** (port 3000) - Express API with health checks
+- **frontend** (port 4173) - Nginx serving React app
+- **redis** (port 6379) - Job storage with persistence
+
+### Commands
+```bash
+# Start services
+docker-compose up -d
+
+# Stop services
+docker-compose down
+
+# View logs
+docker-compose logs -f
+
+# Restart service
+docker-compose restart backend
+
+# Check status
+docker-compose ps
+```
+
+---
+
+## 🔧 Configuration
+
+### Environment Variables
+
+| Variable | Required | Default | Description |
+|----------|----------|---------|-------------|
+| `GITHUB_TOKEN` | Yes | - | GitHub Personal Access Token |
+| `BOB_API_KEY` | Yes | - | IBM Bob API key |
+| `BOB_API_URL` | Yes | - | IBM Bob API endpoint |
+| `ORCHESTRATE_URL` | Yes | - | watsonx Orchestrate URL |
+| `ORCHESTRATE_INSTANCE_ID` | Yes | - | Orchestrate instance ID |
+| `ORCHESTRATE_AGENT_ID` | Yes | - | Spec parser agent ID |
+| `ORCHESTRATE_PR_AGENT_ID` | Yes | - | PR description agent ID |
+| `PORT` | No | 3000 | Backend server port |
+| `NODE_ENV` | No | development | Environment mode |
+| `REDIS_URL` | No | - | Redis connection URL |
+| `LOG_LEVEL` | No | info | Logging level |
+| `ALLOWED_ORIGINS` | No | * | CORS allowed origins |
+
+### Rate Limiting
+- Development: 20 requests per 15 minutes
+- Production: 10 requests per 15 minutes
+
+### Timeouts
+- Spec parsing: 60 seconds
+- Code generation: 300 seconds (5 minutes)
+- PR creation: 120 seconds
+- GitHub API: 30 seconds
+
+---
+
+## 📚 Documentation
+
+- **[PRODUCTION_HARDENING.md](PRODUCTION_HARDENING.md)** - Complete implementation details
+- **[CONTRIBUTING.md](CONTRIBUTING.md)** - Contribution guidelines
+- **[DEMO_SETUP.md](DEMO_SETUP.md)** - Demo scenarios and setup
+- **[IMPLEMENTATION_PROGRESS.md](IMPLEMENTATION_PROGRESS.md)** - Progress tracking
+- **API Docs** - http://localhost:3000/api-docs
+
+---
+
+## 🎯 Key Features
+
+### Frontend
+- ✅ Error banner with dismissible alerts
+- ✅ Job history with localStorage (last 10 jobs)
+- ✅ Example specifications (3 templates)
+- ✅ Visual progress indicators with animations
+- ✅ Error boundary for crash recovery
+- ✅ Responsive design
+
+### Backend
+- ✅ Environment validation on startup
+- ✅ Structured logging with Winston
+- ✅ Comprehensive error handling
+- ✅ Input validation with Joi
+- ✅ CORS whitelist and rate limiting
+- ✅ Request ID tracking
+- ✅ Redis with in-memory fallback
+- ✅ Retry logic with exponential backoff
+- ✅ Timeout protection
+- ✅ Health checks
+- ✅ Graceful shutdown
+- ✅ Prometheus metrics
+
+### Infrastructure
+- ✅ Docker and docker-compose
+- ✅ Multi-stage builds
+- ✅ Health checks
+- ✅ Non-root users
+- ✅ Volume management
+
+---
+
+## 🔗 Links
+
+- **Original Hackathon Submission**: [main branch](https://github.com/lchinguyen/spec-to-ship/tree/main)
+- **Production Improvements**: [production-hardening branch](https://github.com/lchinguyen/spec-to-ship/tree/production-hardening)
+- **Demo Target Repo**: [spec-to-ship-demo-target](https://github.com/lchinguyen/spec-to-ship-demo-target/pulls)
+- **Video Demo**: [YouTube](https://youtu.be/D9c0wnX1vw4?si=yMuJSlpD_OvPfN6F)
+- **Vercel Deployment**: [spec-to-ship-pied.vercel.app](https://spec-to-ship-pied.vercel.app/)
+
+---
+
+## 🤝 Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on:
+- Development setup
+- Code style
+- Testing requirements
+- Pull request process
+
+---
+
+## 📄 License
+
+MIT License - See LICENSE file for details
+
+---
+
+## 🙏 Acknowledgments
+
+- IBM Bob and watsonx Orchestrate teams
+- IBM Bob Hackathon organizers
+- Open source community
+
+---
+
+## 📞 Support
+
+- **Issues**: [GitHub Issues](https://github.com/lchinguyen/spec-to-ship/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/lchinguyen/spec-to-ship/discussions)
+
+---
+
+**Note**: This is the production-hardening branch with post-hackathon improvements. The original hackathon submission is preserved in the main branch.
+
+Made with ❤️ using IBM Bob IDE and watsonx Orchestrate
