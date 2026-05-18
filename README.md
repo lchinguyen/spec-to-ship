@@ -78,8 +78,8 @@ GitHub Automation:
    ↓
       
 Demo repo `spec-to-ship-demo-target` generated PR
-```
-```
+
+
 ## IBM Bob IDE usage: 
 
 IBM Bob IDE used to analyze backend architecture, reviewed production readiness, suggest improvements, generate technical documentation using full repository context. Exported Bob task session reports are included in `bob_sessions/` folder.
