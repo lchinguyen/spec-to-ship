@@ -78,7 +78,6 @@ GitHub Automation:
    ↓
       
 Demo repo `spec-to-ship-demo-target` generated PR
-
 ```
 ```
 ## IBM Bob IDE usage: 
