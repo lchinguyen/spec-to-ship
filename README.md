@@ -142,7 +142,7 @@ The project uses a React frontend where users submit software feature requests a
 
 - Integrated IBM watsonx Orchestrate agents, IBM Bob IDE, and GitHub API automation to transform natural-language software requirements into automated engineering workflows and pull request generation.
   
-- Implemented backend production-readiness features including structured logging, centralized error handling, input validation, rate limiting, retry logic, timeout protection, and health monitoring.
+- Applied API security & backend reliability techniques including CORS configuration, structured logging, centralized error handling, input validation, rate limiting, retry logic, timeout protection, and health monitoring.
 
 - Build developer infrastructure with Swagger/OpenAPI documentation, Jest testing, Docker containerization, Prometheus metrics, and CI-ready workflows.
 
